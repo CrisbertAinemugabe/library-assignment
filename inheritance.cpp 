@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+class Vehicle {
+protected:
+    std::string brand;
+
+public:
+    void setBrand(std::string b) { brand = b; }
+    void startEngine() { std::cout << brand << " engine started." << std::endl; }
+};
+
+class Car : public Vehicle {
+protected:
+    int numberOfDoors;
+public:
+    void setDoors(int doors) { numberOfDoors = doors; }
+    void drive() { std::cout << "Driving a " << numberOfDoors << "-door " << brand << " car." << std::endl; }
+};
+
+class ElectricCar : public Car {
+private:
+    int batteryCapacity; // kWh
+public:
+    void setBattery(int capacity) { batteryCapacity = capacity; }
+    void charge() { 
+        std::cout << "Charging the " << brand << " (" << batteryCapacity << " kWh battery)." << std::endl; 
+    }
+};
+
+int main() {
+    ElectricCar myTesla;
+    myTesla.setBrand("Tesla");
+    myTesla.startEngine();
+    myTesla.setDoors(4);
+    myTesla.drive();
+    myTesla.setBattery(100);
+    myTesla.charge();
+
+    return 0;
+}
